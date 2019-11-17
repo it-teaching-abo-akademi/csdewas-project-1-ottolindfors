@@ -145,9 +145,28 @@ img {
     box-sizing: border-box;
 }
 
+/*
+max-width är övre gräns, min-width är undre gräns
+max-width: 768px; appliceras för skärmar mindre eller lika med (upp till) 768px
+min-width: 768px; appliceras för skärmar större eller lika med (ner till) 768px
+*/
 @media only screen and (max-width: 768px) {
     [class*="col-"] {
         width: 100%;
+    }
+    .hidden-stuff {
+        /* Hide the hover thing */
+        display: none;
+    }
+    .content {
+        margin: 2%;
+    }
+}
+
+@media print {
+    /* Hide stuff (or modify style) when printing */
+    .col-2, ol {
+        display: none;
     }
 }
 
