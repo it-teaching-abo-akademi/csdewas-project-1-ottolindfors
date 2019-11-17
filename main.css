@@ -1,0 +1,145 @@
+body {
+    background-color: #343233;
+    color: cornsilk;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1 {
+    text-align: center;
+}
+
+ol {
+    text-align: center;
+}
+
+p.jumbo {
+    color: palegreen;
+    font-size: 35px;
+    text-align: center;
+}
+
+a {
+    color: cornsilk;
+}
+
+a:hover {
+    color: palegreen;
+}
+
+button {
+    background-color: palegreen;
+    border: none;
+    border-radius: 2px;
+    color: #343233;
+    padding: 3px 15px;
+    transition-duration: 500ms;
+}
+
+button:active {
+    background-color: cornsilk;
+    transition-duration: 50ms;
+}
+
+::selection {
+    color: #346033;
+    background: palegreen;
+}
+
+.content {
+    margin: 0 10%;
+}
+
+.hidden {
+    width: 100%;
+    text-align: center;
+}
+
+.hidden p {
+    display: none;
+    color: #343233;
+    background-color: cornsilk;
+    padding: 10px;
+    border: 2px;
+    border-radius: 5px;
+}
+
+.hidden:hover p{
+    display: block;
+}
+
+#dragArea {
+    width: auto;
+    height: 250px;
+    margin: 10px;
+    border: 1px solid #346033;
+    border-radius: 10px;
+}
+
+img {
+    border-radius: 10px;
+    width: 50%;
+    max-width: 150px;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    /* background-color: #6ec184; /*#67ea8a, 6cd187*/
+    border: 1px solid #346033;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px) {
+    [class*="col-"] {width: 100%}
+}
+
+
