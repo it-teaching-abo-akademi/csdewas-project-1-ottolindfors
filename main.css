@@ -1,5 +1,8 @@
+:root {
+    --main-color: cornsilk;
+}
 body {
-    background-color: #343233;
+    background-color: #2a383a; /* 2a383a, 343233 */
     color: cornsilk;
     font-family: Arial, Helvetica, sans-serif
 }
@@ -19,7 +22,11 @@ p.jumbo {
 }
 
 a {
-    color: cornsilk;
+    color: var(--main-color);
+}
+
+p {
+    color: var(--main-color);
 }
 
 a:hover {
@@ -131,7 +138,7 @@ img {
 
 [class*="col-"] {
     float: left;
-    /* background-color: #6ec184; /*#67ea8a, 6cd187*/
+    background-color: #343233; /*#67ea8a, 6cd187*/
     border: 1px solid #346033;
     border-radius: 10px;
     padding: 15px;
@@ -139,7 +146,9 @@ img {
 }
 
 @media only screen and (max-width: 768px) {
-    [class*="col-"] {width: 100%}
+    [class*="col-"] {
+        width: 100%;
+    }
 }
 
 
