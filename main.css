@@ -76,7 +76,7 @@ button:active {
 
 #dragArea {
     width: auto;
-    height: 250px;
+    min-height: 250px;
     margin: 10px;
     border: 1px solid #346033;
     border-radius: 10px;
@@ -84,8 +84,8 @@ button:active {
 
 img {
     border-radius: 10px;
-    width: 50%;
-    max-width: 150px;
+    width: 100%;
+    max-width: 200px;
 }
 
 .col-1 {
@@ -145,6 +145,23 @@ img {
     box-sizing: border-box;
 }
 
+.off-1 {
+    position: relative;
+    background-color: #2a383a;
+    width: 75%;
+    height: 300px;
+    left: 20%;
+}
+
+.off-2 {
+    position: relative;
+    background-color: #346033;
+    width: 75%;
+    height: 50%;
+    left: 50px;
+    top: 30%;
+}
+
 /*
 max-width är övre gräns, min-width är undre gräns
 max-width: 768px; appliceras för skärmar mindre eller lika med (upp till) 768px
@@ -160,6 +177,9 @@ min-width: 768px; appliceras för skärmar större eller lika med (ner till) 768
     }
     .content {
         margin: 2%;
+    }
+    img {
+        max-width: 100%;
     }
 }
 

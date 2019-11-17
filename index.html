@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table of contents</title>
     <link rel="stylesheet" href="main.css" type="text/css">
+    <!-- If script is placed in the header it will be executed when needed -->
 </head>
 <body>
 
@@ -22,11 +23,9 @@
 
         <div class="row">
 
-            <div class="col-2">
+            <div class="col-4">
                 <!-- Click counter -->
-                <p>
-                    <button onclick="clickCounter()" type="button">Click me!</button>
-                </p>
+                <button onclick="clickCounter()" type="button">Click me!</button>
                 <div id="result"></div>
                 <script>
                     function clickCounter() {
@@ -124,7 +123,7 @@
                 -->
             </div>
 
-            <div class="col-5 hidden-stuff">
+            <div class="col-4 hidden-stuff">
                 <!-- Hidden content -->
                 <div class="hidden">
                     Hover here
@@ -132,8 +131,36 @@
                 </div>
             </div>
 
-            <div class="col-5">
+            <div class="col-4">
                 <div class="drag-drop">
+                    <!-- Change image -->
+                    <button onclick="changeImage()">Change image</button>
+                    <script>
+                        function changeImage() {
+                            const oldSrc = document.getElementById('dragImg').src;
+                            var newSrc = '';
+                            if (oldSrc.includes('images/cat.jpg')) {
+                                newSrc = oldSrc.replace('cat.jpg', 'cat-talk.jpg');
+                            }
+                            if (oldSrc.includes('images/cat-talk.jpg')) {
+                                newSrc = oldSrc.replace('cat-talk.jpg', 'cat.jpg');
+                            }
+                            document.getElementById('dragImg').src = newSrc;
+                        }
+                    </script>
+                    <!-- Make image monochrome -->
+                    <button onclick="grayscaleImage()">Toggle grayscale</button>
+                    <script>
+                        function grayscaleImage() {
+                            const style = document.getElementById('dragImg').style.filter;
+                            if (style === 'grayscale(100%)') {
+                                document.getElementById('dragImg').style.filter = 'none'
+                            }
+                            else {
+                                document.getElementById('dragImg').style.filter = 'grayscale(100%)'
+                            }
+                        }
+                    </script>
                     <!-- Drag and drop an image -->
                     <img src="images/cat.jpg" alt="cat" draggable="true" ondragstart="drag(event)" id="dragImg">
                     <div id="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -155,8 +182,53 @@
                     </script>
                 </div>
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+                <!-- Offset -->
+                <div class="off-1">
+                    <p>Offset-1, position:relative; width:75%; height:50%; left:30%;</p>
+                    <div class="off-2">
+                        <p>Offset-2, position: relative; width: 75%; height: 50%; left: 50px; top: 30%;</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <!-- Create element -->
+                <!-- Unobtrusive style -->
+                <button id="create-element-btn">Create element</button>
+                <div id="create-element"></div>
+                <script>
+                    // Unobtrusive style
+                    document.getElementById('create-element-btn').onclick = myNewElement;
+
+                    var counter = 1;
+                    function myNewElement() {
+                        const newHeading = document.createElement("H2");
+                        newHeading.innerHTML = counter + ". Soon the world will be ruled by cats";
+                        var node = document.getElementById('create-element');
+                        console.log(node.childNodes.length);
+                        if (node.childNodes.length === 0) {
+                            document.getElementById('create-element').appendChild(newHeading);
+                            document.getElementById('create-element-btn').innerHTML = 'Replace element'
+                        }
+                        else {
+                            node.replaceChild(newHeading, node.childNodes[0]);
+                        }
+                        counter++;
+                    }
+                </script>
+            </div>
+
         </div>
 
     </div>
+
+    <!-- If script is placed in the body it will be executed automatically when the page loads -->
+
 </body>
 </html>
