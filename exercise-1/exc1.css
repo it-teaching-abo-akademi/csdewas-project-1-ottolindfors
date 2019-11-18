@@ -69,47 +69,13 @@ ul.navbar {
 
 
 
+
 /* BEGIN SPACER */
 .spacer {
     height: 25px;
 }
 /* END OF SPACER */
 
-
-
-
-/* BEGIN VERTICAL SIDEBAR */
-.side-menu ul {
-    background-color: var(--dark-gray);
-    border: 1px solid var(--accent-color-dark);
-    height: 100%;
-    list-style-type: none;  /* remove bullets */
-    margin: 0;
-    /*
-    overflow: auto;
-     */
-    padding: 0;
-    /*
-    position: fixed;
-     */
-    width: 100%;
-}
-.side-menu li {
-    border-bottom: 1px solid var(--accent-color-dark);
-}
-.side-menu li:last-child {
-    border-bottom: none;
-}
-.side-menu li a {
-    display: block;
-    padding: 6px 16px;
-    text-decoration: none;  /* remove underlining of links */
-}
-.side-menu li a:hover {
-    background-color: var(--accent-color);
-    color: var(--accent-color-dark);
-}
-/* END OF VERTICAL SIDEBAR */
 
 
 
@@ -208,6 +174,78 @@ ul.navbar {
 /* END OF ANIMATED BANNER */
 
 
+
+
+/* BEGIN PANORAMIC IMAGE */
+.image-container {
+    width: 100%;
+    background: linear-gradient(to right, red, orange);
+    padding: 4px 4px 0 4px;
+    border-radius: 10px;
+}
+#panoramic-image {
+    border-radius: 8px;
+    filter: grayscale(80%) hue-rotate(155deg);
+    width: 100%;
+}
+/* END PANORAMIC IMAGE */
+
+
+
+
+/* BEGIN VERTICAL SIDEBAR */
+.side-menu {
+    /*
+    Trying to get the sidebar to fill the heigth without being obtrusively in the way of other element
+    when scaling the page.
+     */
+}
+.side-menu-ul {
+    background-color: var(--dark-gray);
+    border: 1px solid var(--accent-color);
+    height: 100%;
+    list-style-type: none;  /* remove bullets */
+    margin: 0;
+    padding: 0;
+}
+.side-menu-ul li {
+    border-bottom: 1px solid var(--accent-color);
+}
+.side-menu li:last-child {
+    border-bottom: none;
+}
+.side-menu-ul li a {
+    display: block;
+    padding: 6px 16px;
+    text-decoration: none;  /* remove underlining of links */
+}
+.side-menu-ul li a:hover {
+    background-color: var(--accent-color);
+    color: var(--accent-color-dark);
+}
+/* END OF VERTICAL SIDEBAR */
+
+
+
+
+
+/* BEGIN DRAGGABLE IMAGE */
+.dragArea {
+    min-height: 250px;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+}
+#dragImg {
+    border-radius: 10px;
+    width: 50%;
+    max-width: 200px;
+}
+/* END DRAGGABLE IMAGE */
+
+
+
+
+
 /* BEGIN COLUMNS */
 .col-1 {
     width: 8.33%;
@@ -245,12 +283,20 @@ ul.navbar {
 .col-12 {
     width: 100%;
 }
+.row {
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+}
 [class*="col-"] {
     float: left;
     padding: 5px;
     box-sizing: border-box;
 }
 /* END COLUMNS */
+
+
+
 
 
 @media only screen and (max-width: 768px) {

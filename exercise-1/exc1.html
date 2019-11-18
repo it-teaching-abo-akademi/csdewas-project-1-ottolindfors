@@ -19,12 +19,13 @@
 <!-- Spacer to separate elements-->
 <div class="spacer"></div>
 
-<div>
+<!-- Page content -->
+<div class="row">
 
+    <!-- Vertical side menu -->
     <div class="col-2">
-        <!-- Vertical side menu -->
         <div class="side-menu">
-            <ul class="side-menu">
+            <ul class="side-menu-ul">
                 <li><a href="#">Item 1</a></li>
                 <li><a href="#">Item 2</a></li>
                 <li><a href="#">Item 3</a></li>
@@ -36,7 +37,6 @@
 
     <!-- Main content -->
     <div class="col-10 content">
-
         <!-- Animated banner -->
         <div class="animated-banner">
             <div class="animate-element animation-position-1"></div>
@@ -52,6 +52,7 @@
             <div class="animate-element animation-position-11"></div>
         </div>
 
+        <!-- First text section -->
         <div class="row">
             <div class="col-6">
                 <p>
@@ -64,7 +65,6 @@
                     culpa qui officia deserunt mollit anim id est laborum.
                 </p>
             </div>
-
             <div class="col-6">
                 <p>
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
@@ -76,24 +76,63 @@
             </div>
         </div>
 
-        <div class="col-10">
-            <p>
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-                dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-                quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-                nulla pariatur?
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-                excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-                officia deserunt mollitia animi, id est laborum et dolorum fuga.
-            </p>
+        <!-- Narrower section -->
+        <div class="row">
+            <!-- Empty space on left side -->
+            <div class="col-2"></div>
+            <!-- Section with content -->
+            <div class="col-8">
+                <div class="image-container">
+                    <img src="cat.jpg" alt="Cat on sofa" id="panoramic-image">
+                </div>
+                <div class="text-second">
+                    <p>
+                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                        dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+                        exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                        consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
+                        quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
+                        nulla pariatur?
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                        praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
+                        excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+                        officia deserunt mollitia animi, id est laborum et dolorum fuga.
+                    </p>
+                </div>
+            </div>
+            <!-- Empty space on right side -->
+            <div class="col-2"></div>
         </div>
 
     </div>
+
 </div>
+
+<!-- Draggable picture -->
+<div class="row">
+
+    <!-- Drag area left -->
+    <div class="col-4">
+        <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+
+    <!-- Drag area and picture -->
+    <div class="col-4">
+        <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="cat-talk-small.jpg" alt="cat" draggable="true" ondragstart="drag(event)" id="dragImg">
+        </div>
+    </div>
+
+    <!-- Drag area right -->
+    <div class="col-4">
+        <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+
+</div>
+
+<!-- Load script as the last thing to improve load time -->
+<script src="script.js"></script>
 
 </body>
 </html>
