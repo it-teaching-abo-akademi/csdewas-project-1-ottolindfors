@@ -4,6 +4,8 @@
     --accent-color: palegreen;
     --accent-color-dark: #346033;
     --dark-gray: #343233;
+
+    --navbar-height: 50px;
 }
 
 
@@ -12,7 +14,8 @@
 body {
     background-color: var(--background-color); /* 2a383a, 343233 */
     color: var(--main-color);
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /* remove default space on edges of whole document */
 }
 a {
     color: var(--main-color);
@@ -29,44 +32,84 @@ a:hover {
 
 
 /* BEGIN HORISONTAL NAVBAR */
-.navbar-horisontal ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+.navbar {
+    height: inherit;
     background: var(--dark-gray);
-    position: fixed;
-    top: 0;
+    position: fixed;  /* stay on top of page */
+    z-index: 100;  /* Large enough z-index so that navbar is the topmost layer */
     width: 100%;
 }
-.navbar-horisontal li {
-    float: left;
+ul.navbar {
+    list-style-type: none;  /* remove bullets */
+    margin: 0;
+    overflow: hidden;  /* prevent from being too wide*/
+    padding: 0;
 }
-.navbar-horisontal li a {
+.navbar li {
+    float: left;
+    height: inherit;
+}
+.navbar li a {
     display: block;
+    height: inherit;
+    padding: 15px 16px;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
 }
-.navbar-horisontal li a:hover {
+.navbar li a:hover {
     background-color: var(--accent-color);
     color: var(--accent-color-dark);
 }
-@media screen and (max-width: 768px) {
-    .navbar-horisontal li {
-        float: none;
-    }
+.navbar-spacer {
+    height: var(--navbar-height);  /* so that content is not behind navbar */
+    overflow: auto;
 }
 /* END OF HORISONTAL NAVBAR */
 
 
 
 
-/* SPACER (so that content is not behind navbar) */
+/* BEGIN SPACER */
 .spacer {
-    height: 50px;
+    height: 25px;
 }
 /* END OF SPACER */
+
+
+
+
+/* BEGIN VERTICAL SIDEBAR */
+.side-menu ul {
+    background-color: var(--dark-gray);
+    border: 1px solid var(--accent-color-dark);
+    height: 100%;
+    list-style-type: none;  /* remove bullets */
+    margin: 0;
+    /*
+    overflow: auto;
+     */
+    padding: 0;
+    /*
+    position: fixed;
+     */
+    width: 100%;
+}
+.side-menu li {
+    border-bottom: 1px solid var(--accent-color-dark);
+}
+.side-menu li:last-child {
+    border-bottom: none;
+}
+.side-menu li a {
+    display: block;
+    padding: 6px 16px;
+    text-decoration: none;  /* remove underlining of links */
+}
+.side-menu li a:hover {
+    background-color: var(--accent-color);
+    color: var(--accent-color-dark);
+}
+/* END OF VERTICAL SIDEBAR */
 
 
 
@@ -76,11 +119,12 @@ a:hover {
     /*
     position: fixed;
      */
-    left: 50%;
+    left: 45%;
 }
 .animate-element {
     width: 10%;
-    height: 3px;
+    height: 4px;
+    border-radius: 1px;
     background-color: var(--accent-color);
     animation: infiniteScaleAnimation 10s infinite;
 }
@@ -108,7 +152,7 @@ a:hover {
 }
 .animation-position-1 {
     position: relative;
-    left: 55%;
+    left: 50%;/*55%;*/
     margin: 3px;
 }
 .animation-position-2 {
@@ -162,3 +206,59 @@ a:hover {
     margin: 3px;
 }
 /* END OF ANIMATED BANNER */
+
+
+/* BEGIN COLUMNS */
+.col-1 {
+    width: 8.33%;
+}
+.col-2 {
+    width: 16.66%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-4 {
+    width: 33.33%;
+}
+.col-5 {
+    width: 41.66%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-7 {
+    width: 58.33%;
+}
+.col-8 {
+    width: 66.66%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.33%;
+}
+.col-11 {
+    width: 91.66%;
+}
+.col-12 {
+    width: 100%;
+}
+[class*="col-"] {
+    float: left;
+    padding: 5px;
+    box-sizing: border-box;
+}
+/* END COLUMNS */
+
+
+@media only screen and (max-width: 768px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+    .content {
+        padding: 2%;  /* Comfortable on mobile if content is not all the way to the edge */
+    }
+}
+
