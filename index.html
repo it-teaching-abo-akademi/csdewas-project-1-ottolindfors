@@ -17,15 +17,67 @@
         <li><a href="exercise-3/main.html">Exercise 3</a></li>
     </ol>
 
-    <h1>Other stuff</h1>
+    <h1>Other stuff from lectures</h1>
 
     <div class="content">
 
         <div class="row">
 
             <div class="col-4">
+                <div class="drag-drop">
+                    <!-- Change image -->
+                    <button onclick="changeImage()">Change image</button>
+                    <script>
+                        function changeImage() {
+                            const oldSrc = document.getElementById('dragImg').src;
+                            var newSrc = '';
+                            if (oldSrc.includes('images/cat.jpg')) {
+                                newSrc = oldSrc.replace('cat.jpg', 'cat-talk.jpg');
+                            }
+                            if (oldSrc.includes('images/cat-talk.jpg')) {
+                                newSrc = oldSrc.replace('cat-talk.jpg', 'cat.jpg');
+                            }
+                            document.getElementById('dragImg').src = newSrc;
+                        }
+                    </script>
+                    <!-- Make image monochrome -->
+                    <button onclick="grayscaleImage()">Toggle grayscale</button>
+                    <script>
+                        function grayscaleImage() {
+                            const style = document.getElementById('dragImg').style.filter;
+                            if (style === 'grayscale(100%)') {
+                                document.getElementById('dragImg').style.filter = 'none'
+                            }
+                            else {
+                                document.getElementById('dragImg').style.filter = 'grayscale(100%)'
+                            }
+                        }
+                    </script>
+                    <!-- Drag and drop an image -->
+                    <img src="images/cat.jpg" alt="cat" draggable="true" ondragstart="drag(event)" id="dragImg">
+                    <div id="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <script>
+                        function allowDrop(event) {
+                            event.preventDefault();
+                        }
+                        function drag(event) {
+                            // Get the id of the image the user drags
+                            event.dataTransfer.setData("text", event.target.id);
+                        }
+                        function drop(event) {
+                            event.preventDefault();
+                            // Get the id of the object the user has begun dragging
+                            var data = event.dataTransfer.getData("text");
+                            // Get the object (image) by id and append it (the image) to the target (the place where the image is dropped) in the DOM
+                            event.target.appendChild(document.getElementById(data))
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-4">
                 <!-- Click counter -->
-                <button onclick="clickCounter()" type="button">Click me!</button>
+                <button onclick="clickCounter()" type="button">Click me</button>
                 <div id="result"></div>
                 <script>
                     function clickCounter() {
@@ -131,63 +183,11 @@
                 </div>
             </div>
 
-            <div class="col-4">
-                <div class="drag-drop">
-                    <!-- Change image -->
-                    <button onclick="changeImage()">Change image</button>
-                    <script>
-                        function changeImage() {
-                            const oldSrc = document.getElementById('dragImg').src;
-                            var newSrc = '';
-                            if (oldSrc.includes('images/cat.jpg')) {
-                                newSrc = oldSrc.replace('cat.jpg', 'cat-talk.jpg');
-                            }
-                            if (oldSrc.includes('images/cat-talk.jpg')) {
-                                newSrc = oldSrc.replace('cat-talk.jpg', 'cat.jpg');
-                            }
-                            document.getElementById('dragImg').src = newSrc;
-                        }
-                    </script>
-                    <!-- Make image monochrome -->
-                    <button onclick="grayscaleImage()">Toggle grayscale</button>
-                    <script>
-                        function grayscaleImage() {
-                            const style = document.getElementById('dragImg').style.filter;
-                            if (style === 'grayscale(100%)') {
-                                document.getElementById('dragImg').style.filter = 'none'
-                            }
-                            else {
-                                document.getElementById('dragImg').style.filter = 'grayscale(100%)'
-                            }
-                        }
-                    </script>
-                    <!-- Drag and drop an image -->
-                    <img src="images/cat.jpg" alt="cat" draggable="true" ondragstart="drag(event)" id="dragImg">
-                    <div id="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    <script>
-                        function allowDrop(event) {
-                            event.preventDefault();
-                        }
-                        function drag(event) {
-                            // Get the id of the image the user drags
-                            event.dataTransfer.setData("text", event.target.id);
-                        }
-                        function drop(event) {
-                            event.preventDefault();
-                            // Get the id of the object the user has begun dragging
-                            var data = event.dataTransfer.getData("text");
-                            // Get the object (image) by id and append it (the image) to the target (the place where the image is dropped) in the DOM
-                            event.target.appendChild(document.getElementById(data))
-                        }
-                    </script>
-                </div>
-            </div>
-
         </div>
 
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-8">
                 <!-- Offset -->
                 <div class="off-1">
                     <p>Offset-1, position:relative; width:75%; height:50%; left:30%;</p>
@@ -223,6 +223,94 @@
                     }
                 </script>
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+                <!-- Pass objects to functions -->
+                <!-- Unobtrusive style -->
+                <button id="cat-btn">Which cat</button>
+                <p id="webcat"></p>
+                <p id="cat"></p>
+                <script>
+                    document.getElementById('cat-btn').onclick = getCats;
+
+                    function getCats() {
+                        // The full name is defined using a function
+                        var cat = {
+                            firstName: 'Kitty',
+                            lastName: 'Cat',
+                            fullName: function () {
+                                return this.firstName + ' ' + this.lastName
+                            }
+                        };
+                        // Create another cat
+                        var webCat = {
+                            firstName: 'Erwin',
+                            lastName: 'the Cat'
+                        };
+                        // To use the fullName function on webCat the function must be called with the webCat passed to it
+                        erwin = cat.fullName.call(webCat);
+                        // Otherwise the 'this' in the function refer to the 'cat' object
+                        kitty = cat.fullName(webCat);
+                        // Show result
+                        document.getElementById('webcat').innerHTML = erwin + ' was called the correct way';
+                        document.getElementById('cat').innerHTML = kitty + ' was called the correct way';
+                    }
+                </script>
+            </div>
+
+            <div class="col-6">
+                <!-- Self executing function -->
+                <p>Time spent watching us cats: </p>
+                <p id="clock"></p>
+                <script>
+                    function incrementClock() {
+                        var time = document.getElementById('clock').innerHTML;
+                        time++;
+                        document.getElementById('clock').innerHTML = time;
+
+                    }
+                    <!-- Self executing function -->
+                    (function startClock() {
+                        var c = setInterval(incrementClock, 1000);
+                    }) ();
+                </script>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-4">
+                <!-- Pass objects to functions -->
+                <!-- Unobtrusive style -->
+                <button id="new-cat">Create cat</button>
+                <p id="cat-w-thumbs"></p>
+                <script>
+                    // Cat constructor
+                    function Cat(first, last) {
+                        this.firstName = first;
+                        this.lastName = last;
+                    }
+                    // Create cat
+                    var nr = 1;
+                    document.getElementById('new-cat').onclick = createCat;
+                    function createCat() {
+                        var firstName = 'Erwin' + nr;
+                        var lastName = 'the Cat';
+                        var myCat = new Cat(firstName, lastName);
+
+                        document.getElementById('cat-w-thumbs').innerHTML += myCat.firstName + ' ';
+
+                        nr++;
+                    }
+
+                </script>
+            </div>
+
 
         </div>
 
