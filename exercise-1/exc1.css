@@ -6,80 +6,84 @@
     --dark-gray: #343233;
 }
 
+
+
+/* BASIC STYLING */
 body {
-    background-color: #2a383a; /* 2a383a, 343233 */
-    color: cornsilk;
+    background-color: var(--background-color); /* 2a383a, 343233 */
+    color: var(--main-color);
     font-family: Arial, Helvetica, sans-serif
 }
+a {
+    color: var(--main-color);
+}
+a:hover {
+    color: var(--accent-color);
+}
+::selection {
+    background: var(--accent-color);
+    color: var(--accent-color-dark);
+}
+/* END OF BASIC STYLING */
 
-.animations {
-    position: relative;
+
+
+/* BEGIN HORISONTAL NAVBAR */
+.navbar-horisontal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--dark-gray);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.navbar-horisontal li {
+    float: left;
+}
+.navbar-horisontal li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar-horisontal li a:hover {
+    background-color: var(--accent-color);
+    color: var(--accent-color-dark);
+}
+@media screen and (max-width: 768px) {
+    .navbar-horisontal li {
+        float: none;
+    }
+}
+/* END OF HORISONTAL NAVBAR */
+
+
+
+
+/* SPACER (so that content is not behind navbar) */
+.spacer {
+    height: 50px;
+}
+/* END OF SPACER */
+
+
+
+
+/* ANIMATED BANNER */
+.animated-banner {
+    /*
+    position: fixed;
+     */
     left: 50%;
 }
-
 .animate-element {
     width: 10%;
     height: 3px;
-    background-color: green;
+    background-color: var(--accent-color);
     animation: infiniteScaleAnimation 10s infinite;
 }
-
-.animation-position-1 {
-    position: fixed;
-    left: 55%;
-}
-.animation-position-2 {
-    position: fixed;
-    left: 45%;
-    top: 15px;
-}
-.animation-position-3 {
-    position: fixed;
-    left: 30%;
-    top: 22px;
-}
-.animation-position-4 {
-    position: fixed;
-    left: 67%;
-    top: 29px;
-}
-.animation-position-5 {
-    position: fixed;
-    left: 49%;
-    top: 36px;
-}
-.animation-position-6 {
-    position: fixed;
-    left: 40%;
-    top: 43px;
-}
-.animation-position-7 {
-    position: fixed;
-    left: 44%;
-    top: 50px;
-}
-.animation-position-8 {
-    position: fixed;
-    left: 52%;
-    top: 57px;
-}
-.animation-position-9 {
-    position: fixed;
-    left: 29%;
-    top: 64px;
-}
-.animation-position-10 {
-    position: fixed;
-    left: 62%;
-    top: 71px;
-}
-.animation-position-11 {
-    position: fixed;
-    left: 42%;
-    top: 78px;
-}
-
-
 @keyframes infiniteScaleAnimation {
     0% {
         -webkit-transform: scaleX(1);
@@ -102,3 +106,59 @@ body {
         background-color: palegreen;
     }
 }
+.animation-position-1 {
+    position: relative;
+    left: 55%;
+    margin: 3px;
+}
+.animation-position-2 {
+    position: relative;
+    left: 45%;
+    margin: 3px;
+}
+.animation-position-3 {
+    position: relative;
+    left: 30%;
+    margin: 3px;
+}
+.animation-position-4 {
+    position: relative;
+    left: 67%;
+    margin: 3px;
+}
+.animation-position-5 {
+    position: relative;
+    left: 49%;
+    margin: 3px;
+}
+.animation-position-6 {
+    position: relative;
+    left: 40%;
+    margin: 3px;
+}
+.animation-position-7 {
+    position: relative;
+    left: 44%;
+    margin: 3px;
+}
+.animation-position-8 {
+    position: relative;
+    left: 52%;
+    margin: 3px;
+}
+.animation-position-9 {
+    position: relative;
+    left: 29%;
+    margin: 3px;
+}
+.animation-position-10 {
+    position: relative;
+    left: 62%;
+    margin: 3px;
+}
+.animation-position-11 {
+    position: relative;
+    left: 42%;
+    margin: 3px;
+}
+/* END OF ANIMATED BANNER */

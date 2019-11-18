@@ -1,0 +1,27 @@
+/* BEGIN VERTICAL NAVBAR */
+.navbar-vertical ul {
+    background-color: var(--dark-gray);
+    border: 1px solid var(--accent-color-dark);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: 100%;
+    position: fixed;  /* Make it stick, even on scroll */
+    overflow: auto;  /* Enable scrolling if the sidenav has too much content */
+}
+.navbar-vertical li {
+    border-bottom: 1px solid var(--accent-color-dark);
+}
+.navbar-vertical li a {
+    display: block;
+    text-align: center;
+}
+.navbar-vertical li:last-child {
+    border-bottom: none;
+}
+.navbar-vertical li a:hover {
+    background-color: var(--accent-color);
+    color: var(--accent-color-dark);
+}
+/* END OF VERTICAL NAVBAR */
