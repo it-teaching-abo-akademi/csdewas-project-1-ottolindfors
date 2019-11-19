@@ -245,7 +245,6 @@ ul.navbar {
 
 
 
-
 /* BEGIN COLUMNS */
 .col-1 {
     width: 8.33%;
@@ -298,7 +297,18 @@ ul.navbar {
 
 
 
-
+/* MEDIA BREAKPOINTS */
+@media only screen and (min-width: 992px) {
+  /*  #first-section [class*="col-"] {
+        width: 50%;
+    }
+    #drag-drop [class*="col-"] {
+        width: 33.33%;
+    }
+    .content {
+        padding: 2%;  !* Comfortable on mobile if content is not all the way to the edge *!
+    }*/
+}
 @media only screen and (max-width: 768px) {
     [class*="col-"] {
         width: 100%;
@@ -308,3 +318,4 @@ ul.navbar {
     }
 }
 
+/* END MEDIA BREAKPOINTS */
