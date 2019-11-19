@@ -1,12 +1,13 @@
 :root {
-    --main-color: cornsilk;
-    --background-color: #2a383a;
     --accent-color: palegreen;
     --accent-color-dark: #346033;
+    --background-color: #2a383a;
     --dark-gray: #343233;
-
+    --main-color: cornsilk;
     --navbar-height: 50px;
 }
+
+
 
 
 
@@ -31,13 +32,14 @@ a:hover {
 
 
 
+
+
 /* BEGIN HORISONTAL NAVBAR */
 .navbar {
-    height: inherit;
     background: var(--dark-gray);
     position: fixed;  /* stay on top of page */
-    z-index: 100;  /* Large enough z-index so that navbar is the topmost layer */
     width: 100%;
+    z-index: 100;  /* Large enough z-index so that navbar is the topmost layer */
 }
 ul.navbar {
     list-style-type: none;  /* remove bullets */
@@ -47,11 +49,9 @@ ul.navbar {
 }
 .navbar li {
     float: left;
-    height: inherit;
 }
 .navbar li a {
     display: block;
-    height: inherit;
     padding: 15px 16px;
     text-align: center;
     text-decoration: none;
@@ -82,43 +82,40 @@ ul.navbar {
 
 /* ANIMATED BANNER */
 .animated-banner {
-    /*
-    position: fixed;
-     */
     left: 45%;
 }
 .animate-element {
-    width: 10%;
-    height: 4px;
-    border-radius: 1px;
-    background-color: var(--accent-color);
     animation: infiniteScaleAnimation 10s infinite;
+    background-color: var(--accent-color);
+    border-radius: 1px;
+    height: 4px;
+    width: 10%;
 }
 @keyframes infiniteScaleAnimation {
     0% {
-        -webkit-transform: scaleX(1);
         background-color: palegreen;
+        -webkit-transform: scaleX(1);
     }
     25% {
-        -webkit-transform: scaleX(3);
         background-color: orange;
+        -webkit-transform: scaleX(3);
     }
     50% {
-        -webkit-transform: scaleX(1);
         background-color: palevioletred;
+        -webkit-transform: scaleX(1);
     }
     75% {
-        -webkit-transform: scaleX(3);
         background-color: turquoise;
+        -webkit-transform: scaleX(3);
     }
     100% {
-        -webkit-transform: scaleX(1);
         background-color: palegreen;
+        -webkit-transform: scaleX(1);
     }
 }
 .animation-position-1 {
     position: relative;
-    left: 50%;/*55%;*/
+    left: 55%;
     margin: 3px;
 }
 .animation-position-2 {
@@ -178,10 +175,10 @@ ul.navbar {
 
 /* BEGIN PANORAMIC IMAGE */
 .image-container {
-    width: 100%;
+    border-radius: 10px;
     background: linear-gradient(to right, red, orange);
     padding: 4px 4px 0 4px;
-    border-radius: 10px;
+    width: 100%;
 }
 #panoramic-image {
     border-radius: 8px;
@@ -247,9 +244,9 @@ ul.navbar {
 
 /* BEGIN COLUMNS */
 .row {
-    width: 100%;
-    float: left;
     box-sizing: border-box;
+    float: left;
+    width: 100%;
 }
 .col-1 {
     width: 8.33%;
