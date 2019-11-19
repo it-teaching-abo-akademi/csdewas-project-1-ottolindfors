@@ -23,7 +23,7 @@
 <div class="row">
 
     <!-- Vertical side menu -->
-    <div class="col-2">
+    <div class="col-2 col-sm-12">
         <div class="side-menu">
             <ul class="side-menu-ul">
                 <li><a href="#">Item 1</a></li>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- Main content -->
-    <div class="col-10 content">
+    <div class="col-10 col-sm-12 content">
         <!-- Animated banner -->
         <div class="animated-banner">
             <div class="animate-element animation-position-1"></div>
@@ -53,8 +53,8 @@
         </div>
 
         <!-- First text section -->
-        <div class="row" id="first-section">
-            <div class="col-6">
+        <div class="row">
+            <div class="col-6 col-sm-12">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -65,7 +65,7 @@
                     culpa qui officia deserunt mollit anim id est laborum.
                 </p>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-sm-12">
                 <p>
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                     doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
@@ -79,9 +79,9 @@
         <!-- Narrower section -->
         <div class="row">
             <!-- Empty space on left side -->
-            <div class="col-2"></div>
+            <div class="col-2 col-md-0"></div>
             <!-- Section with content -->
-            <div class="col-8">
+            <div class="col-8 col-md-12">
                 <div class="image-container">
                     <img src="cat.jpg" alt="Cat on sofa" id="panoramic-image">
                 </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <!-- Empty space on right side -->
-            <div class="col-2"></div>
+            <div class="col-2 col-md-0"></div>
         </div>
 
     </div>
@@ -113,19 +113,17 @@
 <div class="row" id="drag-drop">
 
     <!-- Drag area left -->
-    <div class="col-4">
+    <div class="col-4 col-sm-12">
         <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
-
     <!-- Drag area and picture -->
-    <div class="col-4">
+    <div class="col-4 col-sm-12">
         <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)">
             <img src="cat-talk-small.jpg" alt="cat" draggable="true" ondragstart="drag(event)" id="dragImg">
         </div>
     </div>
-
     <!-- Drag area right -->
-    <div class="col-4">
+    <div class="col-4 col-sm-12">
         <div class="dragArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
 
