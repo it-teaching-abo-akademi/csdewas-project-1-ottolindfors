@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/exc2.css">
+    <script defer src="js/exc2.js"></script>
     <title>Exercise 2</title>
 </head>
 <body>
@@ -11,13 +12,13 @@
         <div class="row">
             <p>
                 <label for="barcodeInput">Enter barcode:</label>
-                <input id="barcodeInput" type="text">
+                <input id="barcodeInput" type="text" placeholder="Enter the virtual barcode here">
             </p>
-            <button onclick="">Decode</button>
+            <button onclick="" id="buttonDecode">Decode</button>
         </div>
 
         <div class="row">
-            <button onclick="">Hide</button>
+            <button onclick="" id="buttonHide">Hide</button>
         </div>
 
         <div class="row infoArea">
@@ -37,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12" id="barcodeImage">
                 01001010100010010101101001001010110101010101010
             </div>
 

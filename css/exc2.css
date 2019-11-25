@@ -7,12 +7,34 @@
     --navbar-height: 50px;
 }
 
+button {
+    border: 1px solid var(--accent-color-dark);
+    border-radius: 2px;
+    padding: 2px 15px;
+    margin: 1px;
+    transition-duration: 500ms;
+}
+button:active {
+    background-color: cornsilk;
+    transition-duration: 50ms;
+}
+
 .container {
     padding: 0 5%;
 }
 
 .infoArea {
     border: 1px solid var(--accent-color-dark);
+}
+
+#barcodeImage {
+    text-align: center;
+}
+#barcodeInput {
+    width: 200px;
+}
+#buttonHide {
+    float: right;
 }
 
 /* BEGIN COLUMNS */
