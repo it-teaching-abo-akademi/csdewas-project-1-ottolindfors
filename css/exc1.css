@@ -295,7 +295,7 @@ col-lg-*, col-md-*, col-sm-* (and col-*) are all identical but this way one is a
 for different media breakpoints
 
 Applies to screens larger than 992px */
-@media (min-width: 993px) {
+@media (min-width: 20cm) {
     .col-lg-0 {
         width: 0;
     }
@@ -343,7 +343,7 @@ Applies to screens larger than 992px */
 }
 /* Medium screen
 Applies to screens smaller than or equal to 992px*/
-@media (max-width: 992px) {
+@media (max-width: 20cm) {
     .col-md-0 {
         width: 0;
     }
@@ -391,7 +391,7 @@ Applies to screens smaller than or equal to 992px*/
 }
 /* Small screen
 Applies to screens smaller than or equal to 768px*/
-@media (max-width: 768px) {
+@media (max-width: 15cm) {
     .col-sm-0 {
         width: 0;
     }
