@@ -26,7 +26,6 @@ button:active {
 .infoArea {
     border: 1px solid var(--accent-color-dark);
 }
-
 #barcodeImage {
     text-align: center;
 }

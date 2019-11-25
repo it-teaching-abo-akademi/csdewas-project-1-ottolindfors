@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/exc2.css">
     <script defer src="js/exc2.js"></script>
+    <script src="js/JsBarcode.code128.min.js"></script>
     <title>Exercise 2</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
                 <label for="barcodeInput">Enter barcode:</label>
                 <input id="barcodeInput" type="text" placeholder="Enter the virtual barcode here">
             </p>
-            <button onclick="" id="buttonDecode">Decode</button>
+            <button id="buttonDecode">Decode</button>
         </div>
 
         <div class="row">
@@ -39,7 +40,8 @@
             </div>
 
             <div class="col-12" id="barcodeImage">
-                01001010100010010101101001001010110101010101010
+                <svg id="barcode"></svg>
+                <p id="errorMessage"></p>
             </div>
 
         </div>
