@@ -22,26 +22,34 @@
             <button onclick="" id="buttonHide">Hide</button>
         </div>
 
-        <div class="row infoArea">
+        <div class="row" id="infoArea">
 
             <div class="col-12">
                 <div class="col-6 col-sm-12">
                     <p>Payee's IBAN: </p>
+                    <p id="iban"></p>
                 </div>
                 <div class="col-6 col-sm-12">
-                    <p>Amount to be paid:</p>
+                    <p>Amount to be paid: </p>
+                    <p id="amount"></p>
                 </div>
                 <div class="col-6 col-sm-12">
                     <p>Payment reference: </p>
+                    <p id="reference"></p>
                 </div>
                 <div class="col-6 col-sm-12">
-                    <p>Due date:</p>
+                    <p>Due date: </p>
+                    <p id="duedate"></p>
                 </div>
             </div>
 
-            <div class="col-12" id="barcodeImage">
-                <svg id="barcode"></svg>
-                <p id="errorMessage"></p>
+            <div class="row">
+                <div class="quietZone"></div>
+                <div id="barcodeImage">
+                    <svg id="barcode"></svg>
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="quietZone"></div>
             </div>
 
         </div>

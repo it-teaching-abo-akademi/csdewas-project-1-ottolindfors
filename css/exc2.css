@@ -18,13 +18,15 @@ button:active {
     background-color: cornsilk;
     transition-duration: 50ms;
 }
-
 .container {
     padding: 0 5%;
 }
-
-.infoArea {
+#infoArea {
     border: 1px solid var(--accent-color-dark);
+    visibility: visible;
+}
+#barcode {
+    width: 100%;
 }
 #barcodeImage {
     text-align: center;
