@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
     <link rel="stylesheet" href="css/exc3.css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
     <script defer src="js/exc3.js"></script>
     <title>Exercise 3</title>
 </head>
 <body>
 
-<div class="row">
-    <label for="busses">Select bus line: </label>
-    <select id="busses">
-        <option value="" disabled selected>Select bus line</option>
-    </select>
-</div>
-
-<div class="row">
-    <div class="col-4">
-        <button id="showBusses">Show buses</button>
+    <div class="row">
+        <label for="busses">Select bus line: </label>
+        <select id="busses">
+            <option value="" disabled selected>Select bus line</option>
+        </select>
     </div>
-    <div class="col-4">
-        <button id="refresh">Refresh</button>
-    </div>
-    <div class="col-4">
-        <button id="showRoute">Show route</button>
-    </div>
-</div>
 
-<div class="row" id="mymap">
+    <div class="row">
+        <div class="col-4">
+            <button id="showBusses">Show buses</button>
+        </div>
+        <div class="col-4">
+            <button id="refresh">Refresh</button>
+        </div>
+        <div class="col-4">
+            <button id="showRoute">Show route</button>
+        </div>
+    </div>
 
-</div>
+    <div class="row" id="mymap">
+
+    </div>
 
 </body>
 </html>
