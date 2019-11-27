@@ -1,11 +1,12 @@
 // Run when DOM has loaded (use "load" to wait till all content has loaded)
 document.addEventListener("DOMContentLoaded", function (event) {
+    fetchRoutes();
     drawMap();
 });
 
 // Add event listener for showRoute button
 document.getElementById("showRoute").addEventListener("click", function(){
-    drawShape();
+    fetchData();
 });
 
 let map;
@@ -27,36 +28,81 @@ function drawMap() {
     });
 }
 
-function drawShape() {
-    let data;
-    let request = new XMLHttpRequest();
-
-    request.open('GET', 'http://data.foli.fi/gtfs/v0/20191114-135003/shapes/0_201', true);
-    request.onload = function () {
-        if (request.status >= 200 && request.status < 400) {
-            data = JSON.parse(this.response);  // 'this' referes to 'request'
-            let coordinates = data.map(coord => ol.proj.fromLonLat([coord.lon, coord.lat]));
-            drawLine(coordinates);
-        }
-    };
-    request.send();
+function fetchData() {
+    const url = 'http://data.foli.fi/gtfs/v0/20191114-135003/shapes/0_201';
+    // Generate url instead of static url
+    fetch(url)
+        .then(function (response) {
+            // The JSON data will arrive here
+            if (response.status >= 200 && response.status < 400) {
+                return response.json();
+            }
+            else {
+                alert("Could not fetch shape :-S\n\n(Response status: " + response.status + ")");
+                console.log(response.status);
+            }
+        })
+        .then(function (data) {
+            // Iterate through each element in data with map() and extract the long and lat
+            let coordinates = data.map(coord => ol.proj.fromLonLat([coord.lon, coord.lat]));  // https://www.w3schools.com/jsref/jsref_map.asp
+            // Draw the bus line on the map
+            drawBusLine(coordinates);
+        })
+        .catch(function (err) {
+            console.log("Something went wrong :-S " + err);
+            alert("Something went wrong :-S\n(Developer, see console for more information.)")
+        })
 }
 
-function drawLine(coordinates) {
-    lineLayer = new ol.layer.Vector({
-        source: new ol.source.Vector({
-            features: [
-                new ol.Feature({
-                    geometry: new ol.geom.LineString(coordinates)
-                })
-            ]
-        }),
-        style: new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'blue',
-                width: 3
+function drawBusLine(coordinates) {
+    // Build the entire shape
+    let vector = new ol.source.Vector({
+        features: [
+            new ol.Feature({
+                geometry: new ol.geom.LineString(coordinates)
             })
+        ]
+    });
+    // Add some styling
+    let style = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'blue',
+            width: 3
         })
     });
+    // Make an object that can be added to the map
+    lineLayer = new ol.layer.Vector({
+        source: vector,
+        style: style
+    });
+    // Add the shape to the map
     map.addLayer(lineLayer);
+}
+
+function fetchRoutes() {
+    /*
+    Fetch routs and add them to the drop down
+     */
+    const url = "http://data.foli.fi/gtfs/routes";
+
+    fetch(url)
+        .then(function (response) {
+            if (response.status >= 200 && response.status < 400) {
+                return response.json();
+            }
+            else {
+                alert("Could not fetch bus lines :-S\n\n(Response status: " + response.status + ")");
+                console.log(response.status);
+            }
+        })
+        .then(function (data) {
+            let routes = [];
+            data.map(
+                functionInput => routes.push(
+                    {route_short_name: functionInput.route_short_name, route_long_name: functionInput.route_long_name }
+                    )
+            );
+            console.log(data);
+            console.log(routes);
+        })
 }
