@@ -30,6 +30,7 @@ function drawMap() {
 
 function fetchData() {
     const url = 'http://data.foli.fi/gtfs/v0/20191114-135003/shapes/0_201';
+    // TODO: Get url from selected route
     // Generate url instead of static url
     fetch(url)
         .then(function (response) {
@@ -81,7 +82,7 @@ function drawBusLine(coordinates) {
 
 function fetchRoutes() {
     /*
-    Fetch routs and add them to the drop down
+    Fetch routes and add them to the drop down
      */
     const url = "http://data.foli.fi/gtfs/routes";
 
@@ -100,9 +101,22 @@ function fetchRoutes() {
             data.map(
                 functionInput => routes.push(
                     {route_short_name: functionInput.route_short_name, route_long_name: functionInput.route_long_name }
-                    )
+                )
             );
-            console.log(data);
-            console.log(routes);
+            updateBusList(routes);
         })
+        .catch(function (err) {
+            alert("Something went wrong :-S\n(Developer, see console for more information.)")
+            console.log("Something went wrong :-S " + err);
+        })
+}
+
+function updateBusList(arr) {
+    arr.sort();
+    for (i=0; i<arr.length; i++) {
+        var option = document.createElement("option");
+        option.innerHTML = arr[i].route_short_name;
+        document.getElementById("busList").appendChild(option);
+        // option.innerHTML = arr[i].route_short_name + " " + arr[i].route_long_name;
+    }
 }
