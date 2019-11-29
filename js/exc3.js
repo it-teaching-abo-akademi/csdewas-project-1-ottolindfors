@@ -4,18 +4,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
     drawMap();
 });
 
-// Add event listener for showRoute button
-document.getElementById("showRoute").addEventListener("click", function(){
-    showRouteOnMap();
-});
+
 
 let map;
 const inilat = 60.4545;
 const inilon = 22.2648;
-const routesUrl = "https://data.foli.fi/gtfs/routes";
-const tripsUrlBase = "https://data.foli.fi/gtfs/v0/trips/route/";
-const shepesUrlBase = "https://data.foli.fi/gtfs/shapes";
 let routeData = [];  // route_short_name, route_long_name, route_id
+
+const routesUrl = "https://data.foli.fi/gtfs/routes";
+
 
 function drawMap() {
     let tile = new ol.layer.Tile({
@@ -42,8 +39,7 @@ function fetchRoutes() {
                 return response.json();
             }
             else {
-                alert("Could not fetch bus lines :-S\n\n(Response status: " + response.status + ")");
-                console.log(response.status);
+                console.log("Could not fetch bus lines :-S " + response.status);
             }
         })
         .then(function (data) {
@@ -59,7 +55,6 @@ function fetchRoutes() {
             updateBusList(routeData);
         })
         .catch(function (err) {
-            alert("Something went wrong :-S\n(Developer, see console for more information.)")
             console.log("Something went wrong :-S " + err);
         })
 }
@@ -75,21 +70,54 @@ function updateBusList(arr) {
     }
 }
 
+function drawBusLine(coordinates) {
+    // Build the entire shape
+    let vector = new ol.source.Vector({
+        features: [
+            new ol.Feature({
+                geometry: new ol.geom.LineString(coordinates)
+            })
+        ]
+    });
+    // Add some styling
+    let style = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'blue',
+            width: 3
+        })
+    });
+    // Make an object that can be added to the map
+    lineLayer = new ol.layer.Vector({
+        source: vector,
+        style: style
+    });
+    // Add the shape to the map
+    map.addLayer(lineLayer);
+}
+
+
+/*
+function getSelectedRouteId() {
+    /!*
+    Returns the selected route_id from the drop down list.
+    The route_id is stored in the value
+     *!/
+    let busList = document.getElementById("busList");
+    return busList.options[busList.selectedIndex].value;  // type=string
+}
+
 function showRouteOnMap() {
-    /*
+    /!*
     Fetch the shape of the route and draw it on the map
-     */
+     *!/
     // TODO: Get url from selected route
 
     // Acquire route_id
     let route_id = getSelectedRouteId();
     // Acquire list of trips belonging to the route_id from trips.txt
-    let shape_ids = getShapeIDsForRoute(route_id);
     // Pick the most common shape_id from list of trips
-    console.log(shape_ids);
-    console.log("shape_ids.length: " + shape_ids.length);
-    let shape_id = calculateMostCommonShape(shape_ids);
-    console.log("shape_id: " + shape_id);
+    let shape_id = getShapeIDForRoute(route_id);
+    console.log(shape_id);
     // Acquire coordinate listing by shape_id
 
     const url = 'https://data.foli.fi/gtfs/v0/20191114-135003/shapes/0_201';
@@ -117,26 +145,11 @@ function showRouteOnMap() {
         })
 }
 
-function getRouteShapeUrl() {
-    //const dts = String(d.getFullYear()) + String(d.getMonth()) + String(d.getSeconds()) + "-" + d.toISOString().substring(11,19).replace(/:/g,"");
-
-}
-
-function getSelectedRouteId() {
-    /*
-    Returns the selected route_id from the drop down list.
-    The route_id is stored in the value
-     */
-    let busList = document.getElementById("busList");
-    return busList.options[busList.selectedIndex].value;  // type=string
-}
-
-function getShapeIDsForRoute(route_id) {
+function getShapeIDForRoute(route_id) {
     // Acquire list of trips belonging to the route_id from trips.txt and return shapes of all trips
     // TODO: consider reusing code
 
     let url = tripsUrlBase + route_id;
-    let shape_ids = [];
 
     fetch(url)
         .then(function (response) {
@@ -149,44 +162,25 @@ function getShapeIDsForRoute(route_id) {
             }
         })
         .then(function (data) {
-            data.map(fnctInput => shape_ids.push(fnctInput.shape_id));
+            let shape_ids = [];
+            data.map(fnctInput => shape_ids.push({shape_id: fnctInput.shape_id}));
+            console.log(calculateMostCommonShapeID(shape_ids));
+            return calculateMostCommonShapeID(shape_ids);
         })
         .catch(function (err) {
             console.log("Something went wrong :-S " + err);
             alert("Something went wrong :-S\n(Developer, see console for more information.)")
         });
-    return shape_ids;
 }
 
-function calculateMostCommonShape(shape_ids_array) {
+function calculateMostCommonShapeID(shape_ids) {
     // Calculate most common shape_id in shape_ids_array
     // Currently only picking a random shape_id but will be improved later
-    rand_idx = Math.floor(Math.random() * shape_ids_array.length);
-    console.log(shape_ids_array.length + " : " + rand_idx);
-    return shape_ids_array[rand_idx];
+    // Also error must be fixed: TypeError: type of shape_ids is undefined
+    let rand_idx = Math.floor(Math.random() * shape_ids.length);
+    return shape_ids[rand_idx].shape_id;
 }
+*/
 
-function drawBusLine(coordinates) {
-    // Build the entire shape
-    let vector = new ol.source.Vector({
-        features: [
-            new ol.Feature({
-                geometry: new ol.geom.LineString(coordinates)
-            })
-        ]
-    });
-    // Add some styling
-    let style = new ol.style.Style({
-        stroke: new ol.style.Stroke({
-            color: 'blue',
-            width: 3
-        })
-    });
-    // Make an object that can be added to the map
-    lineLayer = new ol.layer.Vector({
-        source: vector,
-        style: style
-    });
-    // Add the shape to the map
-    map.addLayer(lineLayer);
-}
+
+
