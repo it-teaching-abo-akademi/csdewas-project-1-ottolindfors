@@ -8,11 +8,33 @@ document.getElementById("showRoute").addEventListener("click", function(){
 var tripsForRouteID;
 
 /*
+Shows the selected route on the map
+ */
+async function showRoute() {
+    let routeID = getSelectedRoute();
+    await fetchListOfTrips(routeID);
+    let shapeID = getMostCommonShapeId();
+    fetchShapeCoordinatesAndDraw(shapeID);
+}
+
+/*
 Get the currently selected route from the drop down.
  */
 function getSelectedRoute() {
     let busList = document.getElementById("busList");
     return busList.options[busList.selectedIndex].value;  // type=string
+}
+
+/*
+Returns full data set of trips for a given route_id and saves it to tripsForRouteID.
+Example for route_id=1 is at data.foli.fi/gtfs/v0/trips/route/1
+ */
+function fetchListOfTrips(routeID) {
+    let url = "https://data.foli.fi/gtfs/v0//trips/route/" + routeID;
+    return fetch(url)
+        .then(response => handleJSON(response))
+        .then(data => handleTripData(data))
+        .catch(err => console.log("Something went wrong :-S " + err))
 }
 
 /*
@@ -37,32 +59,12 @@ function handleTripData(data) {
 }
 
 /*
-Returns full data set of trips for a given route_id and saves it to tripsForRouteID.
-Example for route_id=1 is at data.foli.fi/gtfs/v0/trips/route/1
- */
-function fetchListOfTrips(routeID) {
-    let url = "https://data.foli.fi/gtfs/v0//trips/route/" + routeID;
-    return fetch(url)
-        .then(response => handleJSON(response))
-        .then(data => handleTripData(data))
-        .catch(err => console.log("Something went wrong :-S " + err))
-}
-
-/*
 Picks the most common shape_id from list of trips.
 Currently only gives a random shape_id (as recommended by Föli).
  */
 function getMostCommonShapeId() {
     let randIdx = Math.floor(Math.random() * tripsForRouteID.length);
     return tripsForRouteID[randIdx].shape_id;
-}
-
-/*
-Draws a shape (route) on the map
- */
-function prepCoordsDrawRoute(coordData) {
-    let coordinates = coordData.map(coords => ol.proj.fromLonLat([coords.lon, coords.lat]));
-    drawBusLine(coordinates);
 }
 
 /*
@@ -76,10 +78,11 @@ function fetchShapeCoordinatesAndDraw(shapeID) {
         .catch(err => console.log("Something went wrong :-S " + err))
 }
 
-async function showRoute() {
-    let routeID = getSelectedRoute();
-    await fetchListOfTrips(routeID);
-    let shapeID = getMostCommonShapeId();
-    fetchShapeCoordinatesAndDraw(shapeID);
+/*
+Draws a shape (route) on the map
+ */
+function prepCoordsDrawRoute(coordData) {
+    let coordinates = coordData.map(coords => ol.proj.fromLonLat([coords.lon, coords.lat]));
+    drawBusLine(coordinates);
 }
 
