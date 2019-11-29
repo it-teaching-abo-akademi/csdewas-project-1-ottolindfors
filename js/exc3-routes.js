@@ -71,7 +71,7 @@ function getMostCommonShapeId() {
 Acquires coordinate listing by shape_id and draws the shape on the map
  */
 function fetchShapeCoordinatesAndDraw(shapeID) {
-    let url = "http://data.foli.fi/gtfs/shapes/" + shapeID;
+    let url = "https://data.foli.fi/gtfs/shapes/" + shapeID;
     fetch(url)
         .then(response => handleJSON(response))
         .then(data => prepCoordsDrawRoute(data))
