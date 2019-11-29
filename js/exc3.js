@@ -4,15 +4,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     drawMap();
 });
 
-
-
 let map;
 const inilat = 60.4545;
 const inilon = 22.2648;
 let routeData = [];  // route_short_name, route_long_name, route_id
-
 const routesUrl = "https://data.foli.fi/gtfs/routes";
-
 
 function drawMap() {
     let tile = new ol.layer.Tile({

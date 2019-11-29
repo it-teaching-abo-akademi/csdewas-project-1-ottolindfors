@@ -1,4 +1,6 @@
-// Add event listener for showRoute button
+/*
+Add event listener for showRoute button
+ */
 document.getElementById("showRoute").addEventListener("click", function(){
     showRoute();
 });
